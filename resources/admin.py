@@ -4,7 +4,7 @@ from models.admin import AdminModel
 class Admin(Resource):
     def post(self, name):
         if AdminModel.find_by_name(name):
-            self.return_message(f'User with name <{name}> already exists')
+            return {'message': f'User with name <{name}> already exists'}
         parser = reqparse.RequestParser()
         parser.add_argument('password', type=str, required=True, help='Password is required')
         data = parser.parse_args()
